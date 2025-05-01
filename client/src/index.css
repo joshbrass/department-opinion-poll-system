@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&display=swap');
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 0;
+  list-style: none;
+  font-family: "National Park", sans-serif;
+ 
+}
+
+body {
+  font-size: 0.9rem;
+  background: var(--color-gray-100);
+  color: var(--color-gray-700);
+  line-height: 1.6;
+}
+
+.container {
+  width: var(--container-w-lg);
+  margin-inline: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  color: var(--color-gray-900);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+h2 {
+  font-size: 1.3rem;
+}
+
+h3{
+  font-size: 1.1rem;
+}
+
+h4{
+  font-size: 0.9rem;
+}
+
+h5 {
+  font-size: 0.75;
+}
+h6 {
+  font-size: 0.6rem;
+}
+
+a {
+  font-size: 0.8rem;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+:root {
+  --color-primary: #DF1E5B;
+  --color-primary-variant :#cc5178;
+  --color-gray-0: #fff;
+  --color-gray-100:#EEE;
+  --color-gray-200:#CCC;
+  --color-gray-300:#BBB;
+  --color-gray-400:#999;
+  --color-gray-500:#777;
+  --color-gray-600:#555;
+  --color-gray-700:#333;
+  --color-gray-800:#111;
+  --color-gray-900:#000;
+  --color-danger: rgb(246, 67, 67);
+  --color-success: rgb(6,164,101);
+
+
+  --radius-1: 0.4rem;
+  --radius-2: 0.8rem;
+  --radius-3: 1.2rem;
+  --radius-4: 1.6rem;
+  --radius-5: 2rem;
+
+
+ --container-w-lg: 80%;
+ --container-w-sm: 94%;
+
+--transition: all 300ms ease;
+}
+
+.dark {
+  --color-gray-0: #0E0D14;
+  --color-gray-100: #2F2B42;
+  --color-gray-200: #45405E;
+  --color-gray-300: #7B7B7B;
+  --color-gray-400: #919191;
+  --color-gray-500: #A1A1A1;
+  --color-gray-600: #C0C0C0;
+  --color-gray-700: #E6E5E5;
+  --color-gray-800: #FAFAFA;
+  --color-gray-900: #FFF;
+}
+
+button {
+  cursor: pointer;
+}
+
+.btn {
+  width: fit-content;
+  background: var(--color-gray-100);
+  color: var(--color-gray-900);
+  font-weight: 600;
+  padding: 1rem 2rem;
+  text-align: center;
+  border-radius: var(--radius-1);
+  transition: var(--transition);
+}
+.btn.primary{
+  background: var(--color-primary);
+  color: #ffff;
+}
+
+.btn.danger{
+  background: var(--color-danger);
+  color: #ffff;
+}
+
+.btn.sm {
+  padding: 0.5rem 1.2rem;
+}
+
+.btn.full{
+  width: 100%;
+}
+
+.btn:hover {
+  background: var(--color-gray-900);
+  color: var(--color-gray-0);
+}
+
+.modal {
+  backdrop-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.7);
+  display: grid;
+  place-items: center;
+}
+.modal_content{
+  background: var(--color-gray-0);
+  width: 35rem;
+  border-radius: var(--radius-5);
+  overflow: hidden;
+}
+
+.modal_header {
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+}
+.modal h4 {
+  color: #ffff;
+}
+.modal__header button {
+  background: transparent;
+  font-size: 1.8rem;
+  color: #ffff;
+}
+.modal_content form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap:1.5rem;
+  padding: 2rem;
+  padding-bottom: 3rem;
+}
+
+.modal_content form input {
+  margin-top: 0.6rem;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: var(--color-gray-100);
+  border-radius: var(--radius-1);
+  color: var(--color-gray-900);
+}
+@media screen and (max-width: 600px){
+  .container {
+    width: var(--container-w-sm);
+  }
+  .modal_content{
+    width: var(--container-w-sm);
+  }
+}

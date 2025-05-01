@@ -1,0 +1,22 @@
+.errorPage{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: var(--color-gray-0);
+}
+
+.errorPage_container{
+    width: 30rem;
+    text-align: center;
+}
+
+.errorPage_container h1 {
+    font-size: 4rem;
+}
+
+@media screen and (max-width: 600px){
+    .errorPage_container {
+        width: 100%;
+    }
+}

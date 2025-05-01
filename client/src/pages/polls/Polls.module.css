@@ -1,0 +1,16 @@
+.polls {
+    margin: 5rem 0;
+}
+
+.polls_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+.polls_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

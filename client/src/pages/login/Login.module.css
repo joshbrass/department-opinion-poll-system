@@ -1,0 +1,115 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #FFFFFF;
+    padding: 1rem; 
+}
+
+.header {
+    margin-bottom: 20px;
+    font-size: 36px;
+    color: #DF1E5B;
+    font-weight: 600;
+    padding-top: 3rem;
+    text-align: center; 
+}
+.logoImg {
+    height: 9rem;
+    width: 9rem;
+    
+  }
+.form_error_message {
+    background: var(--color-danger);
+    color: var(--color-gray-0);
+    padding: 0.6rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: var(--radius-1);
+    font-size: 0.9rem; 
+    text-align: center; 
+}
+
+.subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    padding-bottom: 30px;
+    color: #DF1E5B;
+    text-align: center; 
+}
+
+.signupRedirect {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.signupLink {
+    color: #DF1E5B;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.signupLink:hover {
+    color: #ec447a;
+    text-decoration: underline;
+}
+
+.loginButton button {
+    width: 27rem;
+    height: 3.2rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    .header {
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 14px; 
+    }
+
+    .loginButton button {
+        width: 22rem; 
+        height: 3rem; 
+        font-size: 0.9rem; 
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        font-size: 24px; 
+        padding-top: 2rem; 
+    }
+
+    .subtitle {
+        font-size: 12px; 
+    }
+
+    .container{
+        padding: 3rem 1.5rem;
+        width: var(--container-w-sm);
+    }
+    .form_error_message {
+        font-size: 0.8rem; 
+        padding: 0.5rem 1rem; 
+    }
+
+    .loginButton button {
+        width: 18rem; 
+        height: 2.8rem; 
+        font-size: 0.8rem; 
+    }
+
+    .signupRedirect {
+        font-size: 12px; 
+    }
+}

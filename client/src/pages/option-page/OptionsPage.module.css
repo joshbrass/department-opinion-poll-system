@@ -1,0 +1,27 @@
+.options{
+    margin: 5rem 0;
+}
+
+.options_header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 60%;
+    margin-inline: auto;
+}
+
+.options_header p{
+    margin-bottom: 3rem;
+}
+
+.options_header p .btn.primary{
+    justify-content: center;
+}
+
+.opinion_container{
+    display: grid;
+    grid-template-columns: repeat(auto,minmax(15rem,1fr));
+    gap: 3rem;
+}
+

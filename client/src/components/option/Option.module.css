@@ -1,0 +1,20 @@
+.option{
+    background: var(--color-gray-0);
+    text-align: center;
+    border-radius: var(--radius-3);
+    padding-bottom: 1.2rem;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0, 0.1);
+    border: 0.5rem solid var(--color-gray-0);
+    transition: var(--transition);
+}
+
+.option:hover {
+    box-shadow: none;
+    border-color: var(--color-gray-100);
+}
+
+.option h5{
+    padding: 3rem;
+    font-size: 2rem;
+}

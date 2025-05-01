@@ -1,0 +1,19 @@
+.secondary-button-wrapper {
+}
+
+.secondary-button-wrapper button {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  padding: 12px 24px;
+  background: var(--col-background-white);
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  border: 0.01rem solid var(--col-border-one);
+  /* Text Styles */
+  color: var(--col-text-secondary);
+  font-weight: 600;
+  font-size: 1.6rem;
+  transition: all ease-in-out 0.2s;
+}
