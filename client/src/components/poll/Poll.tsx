@@ -10,14 +10,11 @@ interface PollProps {
   thumbnail: string;
 }
 const Poll: React.FC<PollProps> = ({ id, title, description, thumbnail }) => {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
-
-    const openUpdateModal = () => {
-        dispatch(UiActions.openUpdatePollModal())
-    }
-
-
+  const openUpdateModal = () => {
+    dispatch(UiActions.openUpdatePollModal());
+  };
 
   return (
     <article className={styles.poll}>
@@ -29,9 +26,9 @@ const Poll: React.FC<PollProps> = ({ id, title, description, thumbnail }) => {
           <h4>{title}</h4>
         </Link>
         <p>
-          {description?.length > 255
+          {description && description.length > 255
             ? description.substring(0, 255) + "..."
-            : description}
+            : description || "No description available"}
         </p>
         <div className={styles.poll_cta}>
           <Link to={`/polls/${id}`} className="btn sm">

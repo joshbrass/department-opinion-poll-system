@@ -12,7 +12,7 @@ const OptionsPage = () => {
   const dispatch = useAppDispatch(); 
   
   // Get state from Redux store
-  const { selectedVoterOption, selectedPoll } = useAppSelector((state) => state.vote);
+  const { selectedVoterOption,  } = useAppSelector((state) => state.vote);
   const { voteOpinionModalShowing } = useAppSelector((state) => state.ui);
 
   const filteredOptions = dummyOptions.filter((option) => option.pollId === id);

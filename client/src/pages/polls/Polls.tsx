@@ -8,7 +8,7 @@ import { UiActions } from "../../store/slices/ui-slice";
 import UpdatePollModal from "../../components/modals/update-poll-modal/UpdatePollModal";
 
 const Polls = () => {
-  const [polls, setPolls] = useState(dummyPolls);
+  const [polls, ] = useState(dummyPolls);
   const dispatch = useAppDispatch();
   const pollModalShowing = useAppSelector((state) => state.ui.pollModalShowing);
   const updatePollModalShowing = useAppSelector((state) => state.ui.updatePollModalShowing);

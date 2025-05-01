@@ -5,7 +5,7 @@ import { polls as dummyPolls } from '../../mockdata/data';
 import PollsResult from '../../components/pollls-result/PollsResult';
 
 const Results = () => {
-  const [polls, setPolls] = useState(dummyPolls);
+  const [polls, ] = useState(dummyPolls);
 
   return (
     <section className={styles.results_container}>

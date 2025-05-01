@@ -2,7 +2,7 @@ import styles from './PollsResult.module.css';
 import { options } from '../../mockdata/data';
 import OptionRating from '../option-rating/OptionRating'; 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+
 
 interface PollProps {
   id: string;
@@ -11,7 +11,7 @@ interface PollProps {
 }
 
 const PollsResult: React.FC<PollProps> = ({ id, thumbnail, title }) => {
-  const [totalVotes, setTotalVote] = useState(521);
+  const [totalVotes, ] = useState(521);
 
   // Get options that belong to this poll
   const pollOptions = options.filter(option => option.pollId === id);
@@ -30,7 +30,7 @@ const PollsResult: React.FC<PollProps> = ({ id, thumbnail, title }) => {
             <OptionRating key={option.id} {...option} totalVotes={totalVotes} />
           ))}
         </ul>
-        {/* <Link to={`/polls/${id}/option`} className='btn primary full'>Enter Polls</Link> */}
+        
     </article>
   );
 };
