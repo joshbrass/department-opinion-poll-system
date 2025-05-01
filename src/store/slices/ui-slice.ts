@@ -1,10 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+// Define the state structure
+interface UIState {
+  addOptionModalShowing: boolean;
+  voteOpinionModalShowing: boolean;
+  opinionModalShowing: boolean;
+  pollModalShowing: boolean;
+  updatePollModalShowing: boolean;
+}
+
+const initialState: UIState = {
   addOptionModalShowing: false,
   voteOpinionModalShowing: false,
   opinionModalShowing: false,
-  pollModalShowing:false,
+  pollModalShowing: false,
   updatePollModalShowing: false,
 };
 
@@ -13,10 +22,10 @@ const uiSlice = createSlice({
   initialState,
   reducers: {
     openPollModal(state) {
-      state.pollModalShowing = true
+      state.pollModalShowing = true;
     },
     closePollModal(state) {
-      state.pollModalShowing = false
+      state.pollModalShowing = false;
     },
     openAddOptionModal(state) {
       state.addOptionModalShowing = true;

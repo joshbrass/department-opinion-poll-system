@@ -1,4 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+// Define the state structure
+interface VoteState {
+  selectedVoterOption: string; // ID of selected option (e.g., "o1")
+  currentVoter: {
+    id: string;
+    token: string;
+    isAdmin: boolean;
+  };
+  selectedPoll: string; // Poll ID being viewed or voted on
+  idOfPollToUpdate: string; // Used when updating a poll
+  addOptionPollId: string; // Used when adding a new option to a poll
+}
 
 // Correct current voter (admin in your data is user with id "l1")
 const currentVoter = {
@@ -7,28 +20,28 @@ const currentVoter = {
   isAdmin: true,
 };
 
-const initialState = {
-  selectedVoterOption: '',      // ID of selected option (e.g., "o1")
-  currentVoter,                 // Logged-in user info
-  selectedPoll: '',             // Poll ID being viewed or voted on
-  idOfPollToUpdate: '',         // Used when updating a poll
-  addOptionPollId: '',          // Used when adding a new option to a poll
+const initialState: VoteState = {
+  selectedVoterOption: '',
+  currentVoter,
+  selectedPoll: '',
+  idOfPollToUpdate: '',
+  addOptionPollId: '',
 };
 
 const voteSlice = createSlice({
   name: 'vote',
   initialState,
   reducers: {
-    changeSelectedVoteOption(state, action) {
+    changeSelectedVoteOption(state, action: PayloadAction<string>) {
       state.selectedVoterOption = action.payload;
     },
-    changeSelectedPoll(state, action) {
+    changeSelectedPoll(state, action: PayloadAction<string>) {
       state.selectedPoll = action.payload;
     },
-    changeIdOfPollToUpdate(state, action) {
+    changeIdOfPollToUpdate(state, action: PayloadAction<string>) {
       state.idOfPollToUpdate = action.payload;
     },
-    changeAddOptionPollId(state, action) {
+    changeAddOptionPollId(state, action: PayloadAction<string>) {
       state.addOptionPollId = action.payload;
     },
   },
