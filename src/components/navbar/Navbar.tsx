@@ -42,7 +42,7 @@ const Navbar = () => {
         <div>
           {showNav && (
             <menu>
-              <NavLink to='/polls' onClick={closeNavMenu}>Admin</NavLink>
+              <NavLink to='/admin' onClick={closeNavMenu}>Admin</NavLink>
               <NavLink to='/poll-list' onClick={closeNavMenu}>Polls</NavLink>
               <NavLink to='/results' onClick={closeNavMenu}>Results</NavLink>
               <NavLink to='/logout' onClick={closeNavMenu}>Log out</NavLink>

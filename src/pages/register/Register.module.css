@@ -1,52 +1,94 @@
+/* Base styles */
 .container {
-  display: flex;
+  background-color: #ffffff;
+}
+.wrapper{
+display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #ffffff;
+  min-height: 100vh; /* Allow content to expand */
+  background-color: #ffffff; /* Explicit white background */
   font-family: Inter, sans-serif;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 32rem; /* Constrain width */
+  margin: 0 auto;
+  /* Safe areas for mobile */
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.logoImg {
+  width: min(25vw, 7rem); /* Scales with viewport, max 7rem */
+  height: min(25vw, 7rem);
+  margin-bottom: 1.5rem;
 }
 
 .header {
-  margin-bottom: 20px;
-  font-size: 36px;
+  margin-bottom: 1rem;
+  font-size: clamp(1.5rem, 5vw, 2rem); /* Responsive font size */
   color: #df1e5b;
   font-weight: 600;
-  padding-top: 3rem;
+  text-align: center;
+  line-height: 1.2;
 }
-.logoImg {
-  height: 9rem;
-  width: 9rem;
-  
-}
+
 .subtitle {
-  font-size: 16px;
+  font-size: clamp(0.875rem, 3vw, 1rem);
   font-weight: 400;
-  padding-bottom: 30px;
+  margin-bottom: 2rem;
   color: #ec447a;
+  text-align: center;
 }
 
-.inputContainer {
-  position: relative;
-  margin-bottom: 20px;
-  width: 470px;
-  height: 5.6rem;
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 28rem; /* Constrain form width */
+  gap: 1.25rem; /* Space between form elements */
 }
 
-
-
-
-
+.form_error_message {
+  background: var(--color-danger);
+  color: var(--color-gray-0);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-1);
+  font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
 
 .buttonWrapper {
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.registerButton button {
+  width: 100%; /* Full width within max-width */
+  max-width: 20rem; /* Constrain button width */
+  height: 3rem;
+  border-radius: 30px;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.registerButton button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .loginRedirect {
-  margin-top: 20px;
+  margin-top: 1.5rem;
   text-align: center;
-  font-size: 14px;
+  font-size: clamp(0.75rem, 2.5vw, 0.875rem);
   color: #666;
 }
 
@@ -60,4 +102,104 @@
 .loginLink:hover {
   color: #ec447a;
   text-decoration: underline;
+}
+
+/* Focus states for accessibility */
+.form input:focus,
+.registerButton button:focus {
+  outline: 2px solid #df1e5b;
+  outline-offset: 2px;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 2rem 1.5rem;
+  }
+
+  .logoImg {
+    width: min(20vw, 6rem);
+    height: min(20vw, 6rem);
+  }
+
+  .header {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+
+  .subtitle {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+  }
+
+  .form {
+    gap: 1rem;
+  }
+
+  .registerButton button {
+    max-width: 18rem;
+    height: 2.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 1.5rem 1rem;
+    justify-content: flex-start; /* Prevent overflow on short screens */
+  }
+
+  .logoImg {
+    width: min(18vw, 5rem);
+    height: min(18vw, 5rem);
+    margin-bottom: 1rem;
+  }
+
+  .header {
+    font-size: clamp(1rem, 3.5vw, 1.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .subtitle {
+    font-size: clamp(0.625rem, 2vw, 0.75rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .form {
+    gap: 0.75rem;
+  }
+
+  .form_error_message {
+    padding: 0.5rem 0.75rem;
+    font-size: clamp(0.625rem, 2vw, 0.75rem);
+  }
+
+  .registerButton button {
+    max-width: 16rem;
+    height: 2.5rem;
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+  }
+
+  .loginRedirect {
+    font-size: clamp(0.625rem, 2vw, 0.75rem);
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .container {
+    padding: 1rem 0.75rem;
+  }
+
+  .logoImg {
+    width: min(16vw, 4.5rem);
+    height: min(16vw, 4.5rem);
+  }
+
+  .form {
+    max-width: 100%; /* Full width on very small screens */
+    padding: 0 0.5rem;
+  }
+
+  .registerButton button {
+    max-width: 100%;
+    height: 2.3rem;
+  }
 }

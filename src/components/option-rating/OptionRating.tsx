@@ -1,38 +1,31 @@
-import React from "react";
-import styles from "./OptionRating.module.css";
+import styles from './OptionRating.module.css';
 
 interface OptionRatingProps {
-  id: string;
   answer: string;
   voteCount: number;
-  pollId: string;
   totalVotes: number;
 }
 
-const OptionRating: React.FC<OptionRatingProps> = ({
-  answer,
-  voteCount,
-  totalVotes,
+const OptionRating: React.FC<OptionRatingProps> = ({ 
+  answer, 
+  voteCount, 
+  totalVotes 
 }) => {
+  const percentage = totalVotes > 0 ? Math.round((voteCount / totalVotes) * 100) : 0;
+
   return (
-    <li className={styles.result_option}>
-      <div className={styles.result_option_info}>
-        <div>
-          <h5>{answer}</h5>
-          <small>{`${voteCount} ${voteCount === 1 ? "vote" : "votes"}`}</small>
-        </div>
-        <div className={styles.results_option_rating}>
-          <div className={styles.result_option_loader}>
-            <span
-              style={{
-                width: `${voteCount > 0 ? (voteCount / totalVotes) * 100 : 0}%`,
-              }}
-            ></span>
-          </div>
-          <small>{`${
-            voteCount > 0 ? ((voteCount / totalVotes) * 100).toFixed(2) : 0
-          }%`}</small>
-        </div>
+    <li className={styles.option_item}>
+      <div className={styles.option_info}>
+        <span className={styles.option_text}>{answer}</span>
+        <span className={styles.option_stats}>
+          {voteCount} votes ({percentage}%)
+        </span>
+      </div>
+      <div className={styles.option_bar_container}>
+        <div 
+          className={styles.option_bar} 
+          style={{ width: `${percentage}%` }}
+        ></div>
       </div>
     </li>
   );

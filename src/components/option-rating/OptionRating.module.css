@@ -1,31 +1,32 @@
-.result_option {
+.option_item {
+  padding: 0.5rem 0;
+}
+
+.option_info {
   display: flex;
-  align-items: center;
-  gap: 4rem;
-}
-.result_option_info {
-    width: 100%;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
 
-.results_option_rating{
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-}
-.result_option_loader {
-    display: block;
-    width: 100%;
-    height: 0.4rem;
-    background: var( --color-gray-100);
-    margin-top: 0.5rem;
-    border-radius: 0.5rem;
-    overflow: hidden;
+.option_text {
+  font-weight: 500;
 }
 
-.result_option_loader span{
-    background: linear-gradient(90deg, var( --color-primary), var(--color-primary-variant));
-    height: 100%;
-    display: block;
+.option_stats {
+  color: var(--color-gray-600);
+  font-size: 0.9rem;
+}
+
+.option_bar_container {
+  height: 8px;
+  background: var(--color-gray-100);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.option_bar {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 4px;
+  transition: width 0.5s ease;
 }

@@ -1,51 +1,41 @@
-import styles from './ConfirmVoteModal.module.css';
-import { options } from '../../../mockdata/data';
-import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../../hooks/reduxHooks'
-
-interface Opinion {
-  id: string;
-  answer: string;
-}
+import styles from "./ConfirmVoteModal.module.css";
+import { useAppSelector } from "../../../hooks/reduxHooks";
+import LoadingSpinner from "../../spinner/LoadingSpinner";
 
 interface ConfirmVoteModalProps {
   opinionId: string;
+  opinionAnswer: string;
   onCancel: () => void;
-  onConfirm: (opinion: Opinion) => void;
+  onConfirm: () => void;
+  isSubmitting: boolean;
 }
 
-const ConfirmVoteModal: React.FC<ConfirmVoteModalProps> = ({ 
-  opinionId, 
-  onCancel, 
-  onConfirm 
+const ConfirmVoteModal: React.FC<ConfirmVoteModalProps> = ({
+  opinionAnswer,
+  onCancel,
+  onConfirm,
+  isSubmitting,
 }) => {
-  const [modalOpinion, setModalOpinion] = useState<Opinion | null>(null);
-  const currentVoter = useAppSelector((state) => state.vote.currentVoter); // Updated hook
-
-  useEffect(() => {
-    const selectedOpinion = options.find(opinion => opinion.id === opinionId);
-    if (selectedOpinion) {
-      setModalOpinion(selectedOpinion);
-    }
-  }, [opinionId]);
+  const currentUser = useAppSelector((state) => state.user.currentUser);
 
   return (
     <section className="modal">
       <div className={`${styles.confirm_vote_content} modal_content`}>
         <h5>Please confirm your vote</h5>
-        {currentVoter.isAdmin && (
+        {currentUser && currentUser.isAdmin && (
           <p className={styles.adminNote}>(Admin voting mode)</p>
         )}
-        <h2>{modalOpinion?.answer}</h2>
+        <h2>{opinionAnswer}</h2>
         <div className={styles.confirm_vote_cta}>
-          <button className="btn" onClick={onCancel}>
+          <button className="btn" onClick={onCancel} disabled={isSubmitting}>
             Cancel
           </button>
           <button
             className="btn primary"
-            onClick={() => modalOpinion && onConfirm(modalOpinion)}
+            onClick={onConfirm}
+            disabled={isSubmitting}
           >
-            Confirm
+            {isSubmitting ? <LoadingSpinner /> : "Confirm"}
           </button>
         </div>
       </div>

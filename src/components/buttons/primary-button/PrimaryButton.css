@@ -9,7 +9,7 @@
 }
 
 .primary-button-wrapper button {
-  height: 5rem;
+  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,9 +20,8 @@
   outline: none;
   cursor: pointer;
   /* Text Styles */
-  font-size: 1.8rem;
-  font-weight: 600;
-  line-height: 150%;
+  font-size: 1rem;
+  font-weight: 400;
   text-align: center;
   color: #ffff;
   transition: all ease-in-out 0.2s;

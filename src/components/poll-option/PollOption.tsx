@@ -1,30 +1,29 @@
-import { IoMdTrash } from 'react-icons/io'
-import styles from './PollOption.module.css'
+import styles from './PollOption.module.css';
 
 interface PollOptionProps {
   answer: string;
   voteCount: number;
-  onDelete?: () => void; 
+  voters?: Array<{
+    _id: string;
+    name?: string;
+    email: string;
+  }>;
 }
 
-const PollOption: React.FC<PollOptionProps> = ({ answer, voteCount, onDelete }) => {
+const PollOption = ({ answer, voteCount, voters = [] }: PollOptionProps) => {
   return (
-    <li className={styles.poll_option}>
-      <div>
-        <h5>{answer}</h5>
-        <small>{voteCount} vote{voteCount !== 1 ? 's' : ''}</small>
-        {onDelete && (
-          <button 
-            className={styles.poll_option__btn}
-            onClick={onDelete}
-            aria-label={`Delete option "${answer}"`}
-          >
-            <IoMdTrash/>
-          </button>
-        )}
+    <div className={styles.option}>
+      <div className={styles.option_content}>
+        <h3>{answer}</h3>
+        <div className={styles.option_meta}>
+          <span className={styles.voteCount}>{voteCount} votes</span>
+          {voters.length > 0 && (
+            <span className={styles.voterCount}>{voters.length} voters</span>
+          )}
+        </div>
       </div>
-    </li>
-  )
-}
+    </div>
+  );
+};
 
-export default PollOption
+export default PollOption;

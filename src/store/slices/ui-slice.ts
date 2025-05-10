@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Define the state structure
 interface UIState {
@@ -7,6 +7,7 @@ interface UIState {
   opinionModalShowing: boolean;
   pollModalShowing: boolean;
   updatePollModalShowing: boolean;
+  selectedPollId: string | null;
 }
 
 const initialState: UIState = {
@@ -15,6 +16,7 @@ const initialState: UIState = {
   opinionModalShowing: false,
   pollModalShowing: false,
   updatePollModalShowing: false,
+  selectedPollId: null,
 };
 
 const uiSlice = createSlice({
@@ -50,6 +52,13 @@ const uiSlice = createSlice({
     },
     closeUpdatePollModal(state) {
       state.updatePollModalShowing = false;
+      state.selectedPollId = null;
+    },
+    setSelectedPollId(state, action: PayloadAction<string>) {
+      state.selectedPollId = action.payload;
+    },
+    clearSelectedPollId(state) {
+      state.selectedPollId = null;
     },
   },
 });

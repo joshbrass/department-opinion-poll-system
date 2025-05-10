@@ -32,6 +32,17 @@
     margin-top: 2rem;
 }
 
+/* In Poll.module.css */
+.poll {
+    border: 1px solid red; /* Temporary for debugging */
+  }
+  
+  .poll_image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
 @media screen and (max-width: 600px){
     .poll{
         grid-template-columns: 1fr;

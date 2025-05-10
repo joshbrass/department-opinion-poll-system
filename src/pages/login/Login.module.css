@@ -1,115 +1,201 @@
+
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #FFFFFF;
-    padding: 1rem; 
+  background-color: #ffffff;
+}
+.wrapper {
+display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; 
+  background-color: #ffffff;
+  padding: 2rem 1rem; 
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 32rem; 
+  margin: 0 auto;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.logoImg {
+  width: min(25vw, 8rem); 
+  height: min(25vw, 8rem);
+  margin-bottom: 1.5rem;
 }
 
 .header {
-    margin-bottom: 20px;
-    font-size: 36px;
-    color: #DF1E5B;
-    font-weight: 600;
-    padding-top: 3rem;
-    text-align: center; 
-}
-.logoImg {
-    height: 9rem;
-    width: 9rem;
-    
-  }
-.form_error_message {
-    background: var(--color-danger);
-    color: var(--color-gray-0);
-    padding: 0.6rem 1.5rem;
-    margin-bottom: 2rem;
-    border-radius: var(--radius-1);
-    font-size: 0.9rem; 
-    text-align: center; 
+  margin-bottom: 1rem;
+  font-size: clamp(1.5rem, 5vw, 2rem); 
+  color: #df1e5b;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .subtitle {
-    font-size: 16px;
-    font-weight: 400;
-    padding-bottom: 30px;
-    color: #DF1E5B;
-    text-align: center; 
+  font-size: clamp(0.875rem, 3vw, 1rem);
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: #df1e5b;
+  text-align: center;
 }
 
-.signupRedirect {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 14px;
-    color: #666;
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 28rem; 
+  gap: 1.5rem;
 }
 
-.signupLink {
-    color: #DF1E5B;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
+.form_error_message {
+  background: var(--color-danger);
+  color: var(--color-gray-0);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-1);
+  font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.signupLink:hover {
-    color: #ec447a;
-    text-decoration: underline;
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .loginButton button {
-    width: 27rem;
-    height: 3.2rem;
-    border-radius: 30px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  width: 100%; 
+  max-width: 20rem;
+  height: 3rem;
+  border-radius: 30px;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loginButton button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.signupRedirect {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+  color: #666;
+}
+
+.signupLink {
+  color: #df1e5b;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.signupLink:hover {
+  color: #ec447a;
+  text-decoration: underline;
+}
+
+
+.form input:focus,
+.loginButton button:focus {
+  outline: 2px solid #df1e5b;
+  outline-offset: 2px;
 }
 
 /* Media Queries for Responsiveness */
 @media screen and (max-width: 768px) {
-    .header {
-        font-size: 28px;
-    }
+  .container {
+    padding: 2rem 1.5rem;
+  }
 
-    .subtitle {
-        font-size: 14px; 
-    }
+  .logoImg {
+    width: min(20vw, 7rem);
+    height: min(20vw, 7rem);
+  }
 
-    .loginButton button {
-        width: 22rem; 
-        height: 3rem; 
-        font-size: 0.9rem; 
-    }
+  .header {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+
+  .subtitle {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+  }
+
+  .form {
+    gap: 1.25rem;
+  }
+
+  .loginButton button {
+    max-width: 18rem;
+    height: 2.8rem;
+  }
 }
 
 @media screen and (max-width: 480px) {
-    .header {
-        font-size: 24px; 
-        padding-top: 2rem; 
-    }
+  .container {
+    padding: 1.5rem 1rem;
+    justify-content: flex-start; 
+  }
 
-    .subtitle {
-        font-size: 12px; 
-    }
+  .logoImg {
+    width: min(18vw, 6rem);
+    height: min(18vw, 6rem);
+    margin-bottom: 1rem;
+  }
 
-    .container{
-        padding: 3rem 1.5rem;
-        width: var(--container-w-sm);
-    }
-    .form_error_message {
-        font-size: 0.8rem; 
-        padding: 0.5rem 1rem; 
-    }
+  .header {
+    font-size: clamp(1rem, 3.5vw, 1.5rem);
+    margin-bottom: 0.75rem;
+  }
 
-    .loginButton button {
-        width: 18rem; 
-        height: 2.8rem; 
-        font-size: 0.8rem; 
-    }
+  .subtitle {
+    font-size: clamp(0.625rem, 2vw, 0.75rem);
+    margin-bottom: 1.5rem;
+  }
 
-    .signupRedirect {
-        font-size: 12px; 
-    }
+  .form {
+    gap: 1rem;
+  }
+
+  .form_error_message {
+    padding: 0.5rem 0.75rem;
+    font-size: clamp(0.625rem, 2vw, 0.75rem);
+  }
+
+  .loginButton button {
+    max-width: 16rem;
+    height: 2.5rem;
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+  }
+
+  .signupRedirect {
+    font-size: clamp(0.625rem, 2vw, 0.75rem);
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .container {
+    padding: 1rem 0.75rem;
+  }
+
+  .logoImg {
+    width: min(16vw, 5rem);
+    height: min(16vw, 5rem);
+  }
+
+  .form {
+    max-width: 100%; 
+    padding: 0 0.5rem;
+  }
+
+  .loginButton button {
+    max-width: 100%;
+    height: 2.3rem;
+  }
 }
