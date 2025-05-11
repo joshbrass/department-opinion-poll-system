@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
-// Define the state structure
 interface UIState {
   addOptionModalShowing: boolean;
   voteOpinionModalShowing: boolean;
@@ -23,45 +23,45 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    openPollModal(state) {
+    openPollModal(state: UIState) {
       state.pollModalShowing = true;
     },
-    closePollModal(state) {
+    closePollModal(state: UIState) {
       state.pollModalShowing = false;
     },
-    openAddOptionModal(state) {
+    openAddOptionModal(state: UIState) {
       state.addOptionModalShowing = true;
     },
-    closeAddOptionModal(state) {
+    closeAddOptionModal(state: UIState) {
       state.addOptionModalShowing = false;
     },
-    openVoteOpinionModal(state) {
+    openVoteOpinionModal(state: UIState) {
       state.voteOpinionModalShowing = true;
     },
-    closeVoteOpinionModal(state) {
+    closeVoteOpinionModal(state: UIState) {
       state.voteOpinionModalShowing = false;
     },
-    openOpinionModal(state) {
+    openOpinionModal(state: UIState) {
       state.opinionModalShowing = true;
     },
-    closeOpinionModal(state) {
+    closeOpinionModal(state: UIState) {
       state.opinionModalShowing = false;
     },
-    openUpdatePollModal(state) {
+    openUpdatePollModal(state: UIState) {
       state.updatePollModalShowing = true;
     },
-    closeUpdatePollModal(state) {
+    closeUpdatePollModal(state: UIState) {
       state.updatePollModalShowing = false;
       state.selectedPollId = null;
     },
-    setSelectedPollId(state, action: PayloadAction<string>) {
+    setSelectedPollId(state: UIState, action: PayloadAction<string>) {
       state.selectedPollId = action.payload;
     },
-    clearSelectedPollId(state) {
+    clearSelectedPollId(state: UIState) {
       state.selectedPollId = null;
     },
   },
 });
 
 export const UiActions = uiSlice.actions;
-export default uiSlice;
+export default uiSlice.reducer;

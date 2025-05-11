@@ -1,54 +1,54 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface UserState {
-  selectedUserOption: string; 
+  selectedUserOption: string;
   currentUser: {
     id: string;
     token: string;
     isAdmin: boolean;
-  } | null; 
-  selectedPoll: string; 
-  pollIdToUpdate: string; 
-  pollIdForNewOption: string; 
+  } | null;
+  selectedPoll: string;
+  pollIdToUpdate: string;
+  pollIdForNewOption: string;
 }
 
 const initialState: UserState = {
-  selectedUserOption: '', 
-  currentUser: null, 
-  selectedPoll: '', 
-  pollIdToUpdate: '', 
-  pollIdForNewOption: '', 
+  selectedUserOption: '',
+  currentUser: null,
+  selectedPoll: '',
+  pollIdToUpdate: '',
+  pollIdForNewOption: '',
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    changeSelectedUserOption(state, action: PayloadAction<string>) {
+    changeSelectedUserOption(state: UserState, action: PayloadAction<string>) {
       state.selectedUserOption = action.payload;
     },
-    changeSelectedPoll(state, action: PayloadAction<string>) {
+    changeSelectedPoll(state: UserState, action: PayloadAction<string>) {
       state.selectedPoll = action.payload;
     },
     changeCurrentUser(
-      state,
+      state: UserState,
       action: PayloadAction<{ id: string; token: string; isAdmin: boolean } | null>
     ) {
-      state.currentUser = action.payload; 
+      state.currentUser = action.payload;
     },
-    changePollIdToUpdate(state, action: PayloadAction<string>) {
+    changePollIdToUpdate(state: UserState, action: PayloadAction<string>) {
       state.pollIdToUpdate = action.payload;
     },
-    changePollIdForNewOption(state, action: PayloadAction<string>) {
+    changePollIdForNewOption(state: UserState, action: PayloadAction<string>) {
       state.pollIdForNewOption = action.payload;
     },
-    // ONLY NEW ADDITION: logout reducer
-    logoutUser(state) {
+    logoutUser(state: UserState) {
       state.currentUser = null;
-      state.selectedUserOption = ''; // Reset selected option on logout
-    }
+      state.selectedUserOption = '';
+    },
   },
 });
 
 export const userActions = userSlice.actions;
-export default userSlice;
+export default userSlice.reducer;
