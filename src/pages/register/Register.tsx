@@ -151,7 +151,7 @@ const Register: React.FC = () => {
         <TextInputField
           type="text"
           id="role"
-          label="Role (e.g., student, lecturer)"
+          label="Role (e.g., student, staff)"
           value={formData.role}
           onChange={handleInputChange("role")}
         />

@@ -79,6 +79,15 @@
   color: var(--color-gray-800);
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.role{
+  font-size: 1.5rem;
+  color: var(--color-gray-800);
+}
 .noPolls {
   text-align: center;
   padding: 9rem 0;

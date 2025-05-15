@@ -1,9 +1,11 @@
-import { useState, useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './PollsList.module.css';
-import axios, { AxiosError } from 'axios';
-import LoadingSpinner from '../../components/spinner/LoadingSpinner';
-import ErrorMessage from '../../components/error-message/ErrorMessage';
+import { useState, useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./PollsList.module.css";
+import axios, { AxiosError } from "axios";
+import LoadingSpinner from "../../components/spinner/LoadingSpinner";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import ErrorMessage from "../../components/error-message/ErrorMessage";
 
 interface ThumbnailData {
   type: string;
@@ -49,25 +51,24 @@ const PollsList = () => {
     }
 
     if (!authToken) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
 
     try {
       setIsLoading(true);
       setError(null);
-      
-      const response = await axios.get(
-        `${apiUrl}/polls/active`,
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
+
+      const response = await axios.get(`${apiUrl}/polls/active`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
 
       if (!response.data?.success) {
-        throw new Error(response.data?.message || "Failed to fetch active polls");
+        throw new Error(
+          response.data?.message || "Failed to fetch active polls"
+        );
       }
 
       if (!Array.isArray(response.data?.data)) {
@@ -82,20 +83,23 @@ const PollsList = () => {
     }
   };
 
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
+  const userRole = currentUser?.isAdmin ? "Admin" : "Student";
+
   const handleFetchError = (err: unknown) => {
     if (axios.isAxiosError(err)) {
       const axiosError = err as AxiosError<{ message?: string }>;
-      
+
       if (axiosError.response?.status === 401) {
         localStorage.removeItem("authToken");
-        navigate('/login');
+        navigate("/login");
         return;
       }
 
       setError(
-        axiosError.response?.data?.message || 
-        axiosError.message || 
-        "An error occurred while fetching polls"
+        axiosError.response?.data?.message ||
+          axiosError.message ||
+          "An error occurred while fetching polls"
       );
     } else if (err instanceof Error) {
       setError(err.message);
@@ -106,13 +110,15 @@ const PollsList = () => {
 
   // Generate image URLs and manage cleanup
   const pollDataWithImages = useMemo(() => {
-    return polls.map(poll => {
+    return polls.map((poll) => {
       let imageUrl: string | null = null;
-      
+
       try {
         if (poll.thumbnail?.data?.data?.length && poll.thumbnail?.contentType) {
           const byteArray = new Uint8Array(poll.thumbnail.data.data);
-          const blob = new Blob([byteArray], { type: poll.thumbnail.contentType });
+          const blob = new Blob([byteArray], {
+            type: poll.thumbnail.contentType,
+          });
           imageUrl = URL.createObjectURL(blob);
         }
       } catch (error) {
@@ -121,18 +127,18 @@ const PollsList = () => {
 
       return {
         ...poll,
-        imageUrl
+        imageUrl,
       };
     });
   }, [polls]);
 
   useEffect(() => {
     const urls = pollDataWithImages
-      .map(poll => poll.imageUrl)
+      .map((poll) => poll.imageUrl)
       .filter(Boolean) as string[];
 
     return () => {
-      urls.forEach(url => URL.revokeObjectURL(url));
+      urls.forEach((url) => URL.revokeObjectURL(url));
     };
   }, [pollDataWithImages]);
 
@@ -168,19 +174,23 @@ const PollsList = () => {
   return (
     <section className={styles.polls_container}>
       <div className={`container ${styles.polls_wrapper}`}>
-        <h2>Available Polls ({polls.length})</h2>
+        <div className={styles.header}>
+          <h2>Available Polls ({polls.length})</h2>
+          <p className={styles.role}>{userRole}</p>
+        </div>
+
         <div className={styles.polls_grid}>
-          {pollDataWithImages.map(poll => (
+          {pollDataWithImages.map((poll) => (
             <div key={poll._id} className={styles.poll_card}>
               <h3>{poll.title}</h3>
               <p className={styles.poll_description}>{poll.description}</p>
               {poll.imageUrl && (
-                <img 
-                  src={poll.imageUrl} 
-                  alt={poll.title} 
+                <img
+                  src={poll.imageUrl}
+                  alt={poll.title}
                   className={styles.thumbnail}
                   onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = 'none';
+                    (e.target as HTMLImageElement).style.display = "none";
                   }}
                 />
               )}
@@ -188,7 +198,7 @@ const PollsList = () => {
                 <span>{poll.options.length} options</span>
                 <span>Ends: {formatDate(poll.endDate)}</span>
               </div>
-              <button 
+              <button
                 onClick={() => navigate(`/polls/${poll._id}/option`)}
                 className={styles.vote_button}
               >
